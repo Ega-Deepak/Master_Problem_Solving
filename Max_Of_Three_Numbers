@@ -1,0 +1,22 @@
+Problem Link:https://www.geeksforgeeks.org/problems/greatest-of-three-numbers2520/1
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH: 
+#MAX OF THREE NUMBERS
+Ex: 10, 5, 4 -> max number is 10.
+#CODE
+  class Solution {
+    int greatestOfThree(int A, int B, int C) {
+        int maxOfThree=-1;
+        if(A>B && A>C){
+            maxOfThree=A;
+        }else if(B>A && B>C){
+            maxOfThree=B;
+        }else{
+            maxOfThree=C;
+        }
+        return maxOfThree;
+    }
+  }
+  -> Here we compare each number with other two numbers if it is greater the remaining two it is an max number.
+#TIME COMPLEXITY
+  -> Here we not iterating any loop so it O(1).
