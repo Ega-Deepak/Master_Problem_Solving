@@ -1,0 +1,51 @@
+Problem Link: https://www.geeksforgeeks.org/problems/prime-number2314/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH: 
+#PRIME NUMBER
+ -> A prime number is an number where it is divisible by 1 and number itself. The factors are 1 and the number itself.
+ -> Ex: 5
+    -> the factors of 5 are 1 and 5 so it is an prime number.
+ #BRUTE FORCE APPROACH
+   #CODE
+      class Solution {
+        static boolean isPrime(int n) {
+            int factorCount=0;
+            for(int i=1;i<=n;i++){
+                if(n%i==0){
+                    factorCount++;
+                }
+            }
+            if(factorCount==2){
+                return true;
+            }
+            return false;
+        }
+      }
+  -> Here we iterate from 1 to N and divide N by i values if remainder is 0 then it is a factor of that number so we increment factor count, lastly factor count is 2 then it is a prime number.
+   #TIME COMPLEXITY
+    -> Here we iterate from 1 to N so the time complexity is O(N).
+ #OPTIMAL APPROACH
+      class Solution {
+        static boolean isPrime(int n) {
+            int factorCount=0;
+            for(int i=2;i<=(int)Math.sqrt(n);i++){
+                if(n%i==0){
+                    factorCount++;
+                }
+            }
+            if(factorCount==0){
+                return true;
+            }
+            return false;
+        }
+     }
+ -> Here we iterate from 1 to √N(root of N) if the factor count is 0, the it is a prime number.
+ -> Ex: consider 7
+    -> √7 is 2.64 then we typecast float to int which is (2).
+    -> so iterate 2 to 2 then 7%2=1 so factor count is not incremented then factor count is 0, so 7 is an Prime.
+ #TIME COMPLEXITY
+    -> Here we iterate from 2 to root of N so time complexity is O(√n).
+
+    
+     
+   
