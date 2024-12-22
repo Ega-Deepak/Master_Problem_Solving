@@ -1,0 +1,23 @@
+Problem Link:  https://www.geeksforgeeks.org/problems/sum-of-digits1742/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# APPROACH: 
+  -> Here we need to take each digit from number and then sum it. To get each number we use %(moudlo) operator.
+     Ex: 12 -> 1 + 2 = 3
+     -> To get 2 first we modulo(%) by 10 which gives 2 then we add it to sum variable and then the original number need to convert to 1 so we divide it by 10.
+     -> 12 / 10 = 1, so now number is 1 and then again we use modulo operator repeat previous step and these process will continue until the number is greater then 0.
+ # CODE
+   class Solution {
+    static int sumOfDigits(int n) {
+        int sum=0;
+        while(n>0){
+            int remainder=n%10;
+            sum+=remainder;
+            n=n/10;
+        }
+        return sum;
+     }
+  }
+
+ #TIME COMPLEXITY
+  -> Here we iterate while loop until the number becomes 0. so it will take time as number of digits. O(Number of digits).
+  -> Consider Number of digits as N so time complexity is O(N).
