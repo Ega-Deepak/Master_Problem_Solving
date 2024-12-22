@@ -1,0 +1,23 @@
+Problem Link: https://www.geeksforgeeks.org/problems/number-of-factors1435/1
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# APPROACH: 
+  -> Here we need to count the factors of a given number. Where factors are the number which gives remainder as zero when we divide the number by any number.
+     Ex: 5
+       -> Factors of 5 are 1 and 5, when we divide 5 with 1 and 5 the remainder is 0 so they are the factors of that number. so every time the number is factor then we need
+          to increment the counter variable and lastly we need to return counter variable.
+# CODE
+  class Solution{
+    static int countFactors(int N) {
+        int factorsCount=0;
+        for(int i=1;i<=N;i++){
+            if(N%i==0){
+                factorsCount++;
+            }
+        }
+        return factorsCount;
+     }
+  }
+
+#TIME COMPLEXITY
+   -> Here we iterate loop from 1 to N so time complexity is O(N).
+
