@@ -1,0 +1,45 @@
+Problem Link:  https://www.geeksforgeeks.org/problems/reverse-digit0316/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+APPROACH:
+   -> Here we need to reverse an number 
+        Ex: 122 -> 221
+   -> So for every time we need to take remainder then it will be added to sum and sum is multiplied with 10 before we added to it.
+
+#CODE
+   class Solution {
+    public int reverseDigits(int n) {
+        int reverse=0;
+        while(n>0){
+            int remainder=n%10;
+            reverse=reverse*10+remainder;
+            n=n/10;
+        }
+        return reverse;
+     }
+   }
+
+ #EXPLANATION
+   ->  Here first we set reverse as 0 first then we start loop until n greater than 0.
+       Ex: 122
+          -> on first iteration reverse will be 0 and we enter into while loop
+              -> n=121 and reverse is 0.
+              -> now we enter into while loop
+              -> n>0(121>0) then remainder=n%10 so now remainder will be 2.
+              -> and reverse is 0 so 0*10 = 0, and 0+remainder => 0+2 = 2, so lastly the reverse will be 2
+              -> then n=n/10 line executes and the n will become 122/10=12 so now n is 12.
+          -> on second iteration
+              -> n>0(12>0) then remainder=n%10 so now remainder will be 2.
+              -> and reverse is 2 so 2*10 = 20, and 20+remainder => 20+2 = 22, so lastly the reverse will be 22
+              -> then n=n/10 line executes and the n will become 12/10=1 so now n is 1.
+          -> on third iteration
+              -> n>0(1>0) then remainder=n%10 so now remainder will be 1.
+              -> and reverse is 22 so 22*10 = 220, and 220+remainder => 220+1 = 221, so lastly the reverse will be 221
+              -> then n=n/10 line executes and the n will become 1/10=0 so now n is 0.
+          -> on forth iteration
+              -> n>0(0>0) will be false then loop terminates then the reverse will return
+   #TIME COMPLEXITY:
+      -> Here we iterate while loop upto N become zero that is we iterate loop upto the number of digits in that number.
+      -> Ex: for 121 input we iterate while loop for 3 times.
+
+        
