@@ -1,0 +1,33 @@
+Problem Link: https://www.geeksforgeeks.org/problems/palindrome0746/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+APPROACH:
+   -> Here we need to reverse an number 
+        Ex: 122 -> 221
+   -> if the original number and and its reverse is equal then that number is palindrome.
+       Ex: 121 -> 121(reverse) so 121 is palindrome number.
+   -> so to reverse the number refer to this article -> https://github.com/Ega-Deepak/Master_Problem_Solving/blob/main/Reverse_A_Number
+#CODE
+   class Solution {
+    public boolean isPalindrome(int n) {
+        int reverse=0;After 
+        int temp=n;
+        while(temp>0){
+            int remainder=temp%10;
+            reverse=reverse*10+remainder;
+            temp=temp/10;
+        }
+        if(n==reverse){
+            return true;
+        }
+        return false;
+      }
+   }
+
+#EXPLANATION:
+   -> After reversing the number compare it with the original number if both numbers are equal then it is palindrome.
+   -> Here we are storing N in temp variable because in while loop if we use N lastly the N will become 0.(T know about these refer to reverse of a number article).
+   -> Comparing reverse number with 0 will results to false, so we are storing it in temp variable.
+   -> lastly after reversing the number compare it with N so if both are equal then it is palindrome number else it is not a palindrome number.
+#TIME COMPLEXITY
+   -> Here we iterating while loop for the number of digits times so time complexity is O(N).
