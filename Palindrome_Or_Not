@@ -10,7 +10,7 @@ APPROACH:
 #CODE
    class Solution {
     public boolean isPalindrome(int n) {
-        int reverse=0;After 
+        int reverse=0;
         int temp=n;
         while(temp>0){
             int remainder=temp%10;
