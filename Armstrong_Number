@@ -1,0 +1,38 @@
+Problem Link: https://www.geeksforgeeks.org/problems/armstrong-numbers2727/1
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+    -> Armstrong number is a number where it digits power sum is equal to that number.
+         Ex: 153 -> 1^3 + 5^3 + 3^3 = 153, so 153 is equal to its individual digits cube sum so it is Armstrong number.
+#CODE
+   class Solution {
+    static boolean armstrongNumber(int n) {
+        int count=0;
+        int temp=n;
+        while(temp>0){
+            temp=temp/10;
+            count++;
+        }
+        temp=n;
+        int sum=0;
+        while(temp>0){
+            int remainder=temp%10;
+            sum=sum+(int)Math.pow(remainder,count);
+            temp=temp/10;
+        }
+        if(n==sum){
+            return true;
+        }
+        return false;
+     }
+   }
+#EXPLANATION:
+    -> Here furst we nedd to count the number of digits in the number so we use while loop to know the number of digits.
+    -> Here we use temp variable to store n value because after first while loop the temp will become zero.
+    -> Agein n value will be stored in temp and then we take the remainder and then calcualte the power of its digit with count.
+    -> Math.pow is used to get the power of remainder^count, this method will return double so we typecast it to int.
+    -> And then we add it to sum and then divide temp with 10 to get next digit.
+    -> lastly compare sum with n if both are equal it is armstrong else it is not a armstrong number.
+#TIME COMPLEXITY
+    -> Here we first iterate over the digits of an number to calucate the number of digits so its Time complexity is O(N) where N is number of digits.
+    -> and then ageain we iterate over the number of digits to calcualte its power so its Time complexity is O(N) where N is number of digits.
+    -> So total Time complexity is O(N)+O(N) = O(N).
