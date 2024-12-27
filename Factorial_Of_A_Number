@@ -1,0 +1,23 @@
+Problem Link:https://www.geeksforgeeks.org/problems/factorial5739/1
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+   -> Factorial of number means multiplication of 1 to that number.
+        Ex: factorial of 5 is 1*2*3*4*5 = 120.
+   -> Factorial of Zero is 1.
+#CODE
+   class Solution {
+    static int factorial(int n) {
+        int factSum=1;
+        for(int i=1;i<=n;i++){
+            factSum=factSum*i;
+        }
+        return factSum;
+       }
+   }
+#EXPLAINATION:
+    -> A for loop runs from 1 to n (inclusive). In each iteration, the current value of factSum is multiplied by the loop variable i,
+       and the result is stored back in factSum. This gradually builds up the factorial of n.
+    -> After the loop completes, the method returns the value of factSum, which now contains the factorial of the input n. If n is 0, the loop doesn’t execute, 
+       and factSum remains 1 as expected for 0! = 1.
+#TIME COMPLEXITY:
+   -> Here we iterate form 1 to N so the time complexity is O(N).
