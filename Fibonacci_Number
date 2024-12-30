@@ -1,0 +1,29 @@
+Problem Link: https://www.geeksforgeeks.org/problems/print-first-n-fibonacci-numbers1002/1
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+   -> Fibonacci numbers are numbers which is sum of previous two numbers.
+    Ex: 0,1,1,2,3,5,8,13,.....
+      -> Here 0,1 are default values and third number is previous of two numbers which is 0+1=1.
+      -> And fourth fibonacci number is sum of 3rd and 2nd fibonacci number 1+1=2.
+#CODE
+   class Solution {
+    public static int[] printFibb(int n) {
+        int[] fiboArr = new int[n];
+        int a=1,b=1;
+        for(int i=0;i<n;i++){
+            fiboArr[i]=a;
+            int c=a+b;
+            a=b;
+            b=c;
+        }
+        return fiboArr;
+      }
+    }
+#EXPLANATION:
+   -> Here we set first two values as default.
+   -> and created an array to store the fibonacci values in that index.
+   -> and lastly we are returning that array.
+   -> but in this approach we set values as 1 and 1 because the problem want to store values
+      from 1st fibonacci number, so we set values from 1.
+#TIME COMPLEXITY
+   -> Here we are iterating an array of size N so time complxity is O(N).
