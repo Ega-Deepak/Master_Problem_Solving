@@ -1,0 +1,61 @@
+Problem Link: https://www.geeksforgeeks.org/problems/lcm-and-gcd4516/1
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+    -> The LCM of two numbers is the smallest positive integer that is a multiple of both numbers.
+    -> The GCD of two numbers is the largest positive integer that divides both numbers without a remainder. 
+#CODE
+ BRUTEFORCE APPROACH: 
+  class Solution {
+    public static int[] lcmAndGcd(int a, int b) {
+        int max=Math.max(a,b);
+        int min=Math.min(a,b);
+        int[] arr = new int[2];
+        int lcm=0,gcd=0;
+        for(int i=max;;i+=max){
+            if(i%a==0 && i%b==0){
+                arr[0]=i;
+                break;
+            }
+        }
+        for(int j=min;j>0;j--){
+            if(a%j==0 && b%j==0){
+                arr[1]=j;
+                break;
+            }
+        }
+        return arr;
+      }
+  }
+EXPLAINATION:
+   -> Initialization: The method initializes max as the larger number, min as the smaller number, and an array arr to store the results. 
+        The lcm is calculated in a loop starting from max and incrementing by max until a number divisible by both a and b is found.
+   -> LCM Calculation: The first for loop iterates to find the least common multiple by checking divisibility of i (multiples of max)
+      with both a and b, storing it in arr[0].
+   -> GCD Calculation: The second for loop iterates backward from min to find the greatest common divisor by checking if j divides both
+      a and b without a remainder, storing it in arr[1].
+   -> Return Result: The method returns the array arr with the LCM in arr[0] and the GCD in arr[1].
+
+OPTIMAL APPROACH:
+   class Solution {
+    public static int[] lcmAndGcd(int a, int b) {
+        int[] arr = new int[2];
+        int gcd=1;
+        for (int i = 1; i <= Math.min(a, b); i++) {
+            if (a % i == 0 && b % i == 0) {
+                gcd = i;
+            }
+        }
+        int lcm = (a * b) / gcd;
+        arr[0]=lcm;
+        arr[1]=gcd;
+        return arr;
+      }
+   }
+ EXPLAINATION:
+    -> Initialization: An integer array arr is created to store the LCM and GCD. A variable gcd is initialized to 1 to store
+       the greatest common divisor.
+    -> GCD Calculation: A loop iterates from 1 to the smaller of a and b. For every number i that divides both a and b without
+       a remainder, the gcd is updated to i.
+    -> LCM Calculation: Using the formula LCM = (𝑎 × 𝑏)/GCD the least common multiple is calculated and stored in lcm.
+    -> Result Storage and Return: The LCM is stored in arr[0] and the GCD in arr[1]. The method returns the arr containing the LCM and GCD.
+ 
