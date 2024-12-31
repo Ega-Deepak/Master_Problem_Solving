@@ -25,7 +25,7 @@ APPROACH:
         return false;
      }
    }
-#EXPLANATION:
+#EXPLAINATION:
     -> Here furst we nedd to count the number of digits in the number so we use while loop to know the number of digits.
     -> Here we use temp variable to store n value because after first while loop the temp will become zero.
     -> Agein n value will be stored in temp and then we take the remainder and then calcualte the power of its digit with count.
