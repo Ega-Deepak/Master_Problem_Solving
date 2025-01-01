@@ -1,0 +1,24 @@
+Problem Link: https://www.geeksforgeeks.org/problems/search-an-element-in-an-array-1587115621/1
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+   -> Search for an element in an array. And return its index.
+   Ex: [1,2,3,4,5], search element is 3, so you need to return its index that is 2.
+#CODE:
+  class Solution {
+    static int search(int arr[], int x) {
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==x){
+                return i;
+            }
+        }
+        return -1;
+     }
+   }
+#EXPLAINATION:
+   -> This loop iterates over the array arr using an index variable i.
+   -> arr.length provides the number of elements in the array.
+   -> Inside the loop, the condition arr[i] == x checks if the current element in the array (arr[i]) is equal to the target element (x).
+   -> If a match is found, the method immediately returns the index i of the matching element.
+#TIME COMPLEXITY:
+   -> In best case if the element is found at first index the time complexity is O(1).
+   -> In worst case if the element is found at last index the time complexity is O(N).
