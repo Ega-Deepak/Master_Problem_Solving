@@ -1,0 +1,25 @@
+-> An array in Java is a data structure used to store a fixed-size sequential collection of elements of the same type. 
+   Arrays are zero-indexed, meaning the first element is at index 0, and they are used to store data efficiently.
+Characteristics of Arrays:
+   Fixed Size: Once declared, the size of the array cannot be changed.
+   Homogeneous Elements: All elements in an array must be of the same type.
+   Index-Based Access: Elements can be accessed using their index.
+   Continuous Memory Allocation: Elements are stored in contiguous memory locations.
+Declaration and Initialization:
+   1. static declaration and initialization: int[] arr = {1, 2, 3, 4, 5};
+   2. dynamic declaration  and initialization: int[] arr = arr = new int[5]; 
+
+
+-> To get length of an array we use length property.
+   Ex: int[] a={1,2,3,4,5};
+       a.length;//get length of an array which is 5.
+-> To get elements of an array we use index based accessing.
+   Ex: to get 1st element we use a[1].
+   CODE:
+    for (int i = 0; i < a.length; i++) {
+       System.out.println("Element at index " + i + ": " + a[i]);
+    }
+-> Arrays are zero based indexes it start from index 0.
+-> That's why we iterate for less than array length.
+
+  
