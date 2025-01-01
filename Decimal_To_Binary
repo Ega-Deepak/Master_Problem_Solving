@@ -1,0 +1,35 @@
+Problem Link:https://www.geeksforgeeks.org/problems/decimal-to-binary-1587115620/1
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+   -> Decimal System (Base 10):
+        -> It is based on 10 digits: 0,1,2,3,4,5,6,7,8,9.
+        -> Example: 325 = 3*(10^2) + 2*(10^1) + 5*(10^0). 
+   -> Binary System (Base 2):
+        -> The binary number system is used in computers and digital systems.
+        -> It is based on 2 digits: 0 and 1.
+        -> Example: 1011 = 1*(2^3) + 0*(2^2) + 1*(2^1)+ 1*(2^0).
+
+CONVERSION FROM DECIMAL TO BINARY
+  -> To convert a decimal number to binary:
+  -> Divide the decimal number by 2.
+  -> Record the remainder (either 0 or 1).
+  -> Divide the quotient by 2 and repeat until the quotient is 0.
+  -> The binary representation is the remainders read in reverse order.
+#CODE
+  class Solution{
+	void toBinary(int N) {
+		String s="";
+		while(N>0){
+		    int temp=N%2;
+		    s=temp+s;
+		    N=N/2;
+		}
+		System.out.print(s);
+	}
+ }
+#EXPLAINATION:
+  -> Compute the remainder of 𝑁when divided by 2(N % 2). This gives the least significant bit (LSB) of the binary representation.
+  -> Add this remainder as the most significant bit (MSB) in the string s.
+  -> Update 𝑁 by dividing it by 2 (N = N / 2) to move to the next bit.
+#TIME COMPLEXITY
+  -> The time complexity is the number of digits. the while loop iterates the number of digit times so O(N).
