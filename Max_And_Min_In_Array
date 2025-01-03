@@ -1,0 +1,35 @@
+Problem Link: https://www.geeksforgeeks.org/problems/max-min/1
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Find the smallest and largest elements in the array and return their sum.
+-> Example: For array [1, 2, 3, 4, 5], the smallest element is 1 and the largest is 5, so their sum is 1 + 5 = 6.
+#CODE:
+class Solution{ 
+    public static int findSum(int A[],int N) {
+        int min=A[0];
+        int max=A[0];
+        for(int i=0;i<A.length;i++){
+            if(A[i]<min){
+                min=A[i];
+            }
+            if(A[i]>max){
+                max=A[i];
+            }
+        }
+        int sum=min+max;
+        return sum;
+     }
+  }
+EXPLANATION:
+-> A variable min is initialized to the first element of the array (A[0]) to store the smallest value.
+-> A variable max is initialized to the first element of the array (A[0]) to store the largest value.
+-> A for loop iterates through each element of the array A with the loop variable i ranging from 0 to A.length - 1.
+-> Inside the loop:
+    -> If the current element A[i] is smaller than min, then min is updated to A[i].
+    -> If the current element A[i] is larger than max, then max is updated to A[i].
+    -> After the loop completes, the sum of min and max is calculated and stored in the variable sum.
+    -> Finally, the method returns sum.
+TIME COMPLEXITY:
+-> The loop iterates through the array once, so the time complexity is O(N), where N is the size of the array.
+SPACE COMPLEXITY:
+-> The space complexity is O(1) as no additional data structures are used.
