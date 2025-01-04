@@ -1,0 +1,37 @@
+Problem Link:https://www.geeksforgeeks.org/problems/second-largest3735/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=second-largest
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+   -> Traverse the array while maintaining two variables, max1 and max2, to track the largest and second-largest elements, respectively.
+   -> Example:
+        -> For the array [5, 3, 9, 1]:
+        -> max1 becomes 9 (the largest element).
+        -> max2 becomes 5 (the second-largest element).
+        -> The method will return 5.
+#CODE:
+   class Solution {
+    public int getSecondLargest(int[] arr) {
+        int max1=arr[0];
+        int max2=-1;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]>max1){
+                max2=max1;
+                max1=arr[i];
+            }
+            else if(arr[i]>max2 && arr[i]<max1){
+                max2=arr[i];
+            }
+        }
+        return max2;
+      }
+   }
+EXPLAINATION:
+  -> max1 is initialized to the first element of the array, representing the largest element.
+  -> max2 is initialized to -1, indicating no valid second largest element has been found yet.
+  -> The loop iterates through each element of the array using the index i from 0 to arr.length - 1.
+  -> If the current element arr[i] is greater than max1: Update max2 to the current value of max1. Update max1 to the current element arr[i].
+  -> Else, if the current element arr[i] is greater than max2 and smaller than max1: Update max2 to arr[i].
+  -> After the loop, return max2 as the second-largest element. If no second-largest element exists, max2 remains -1.
+TIME COMPLEXITY:
+  -> The loop runs once through the array, making the time complexity O(N), where 𝑁 is the size of the array.
+SPACE COMPLEXITY:
+  -> The algorithm uses a constant amount of extra space, so the space complexity is O(1).
