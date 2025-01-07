@@ -1,0 +1,36 @@
+Problem Link: https://www.geeksforgeeks.org/problems/reverse-an-array/0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Reverse the given array in place without using any additional space.
+-> Ex: [1, 2, 3, 4, 5], reversed array is [5, 4, 3, 2, 1].
+CODE:
+  class Solution {
+    public void reverseArray(int arr[]) {
+        int start=0,end=arr.length-1;
+        while(start<=end){
+            int temp=arr[start];
+            arr[start]=arr[end];
+            arr[end]=temp;
+            start++;
+            end--;
+        }
+     }
+  }
+EXPLANATION:
+  -> Two pointers, start and end, are initialized at the beginning and end of the array, respectively.
+  -> A while loop runs as long as start is less than or equal to end.
+  -> Inside the loop:
+     -> The element at start is swapped with the element at end using a temporary variable (temp).
+     -> The start pointer is incremented, and the end pointer is decremented to move closer to the center of the array.
+     -> The loop continues until all elements are swapped, reversing the array in place.
+TIME COMPLEXITY:
+   -> The loop iterates for half the length of the array, but this simplifies to 𝑂(𝑁) where 𝑁 is the size of the array.
+SPACE COMPLEXITY:
+   -> The algorithm uses only a constant amount of extra space for the temp variable and the two pointers (start and end).
+   -> Therefore, the space complexity is O(1).
+
+
+
+
+
+
