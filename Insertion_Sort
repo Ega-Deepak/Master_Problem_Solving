@@ -1,0 +1,37 @@
+Problem Link: https://www.geeksforgeeks.org/problems/insertion-sort/1
+APPROACH:
+-> Use the Insertion Sort algorithm to sort the given array in ascending order.
+-> Insertion Sort works by building a sorted section of the array one element at a time.
+-> At each step, the current element is compared to elements in the sorted portion and inserted into its correct position.
+-> Example:
+-> For the array [4, 3, 2, 1]:
+-> After processing the first two elements: [3, 4, 2, 1]
+-> After processing the next element: [2, 3, 4, 1]
+-> After processing the last element: [1, 2, 3, 4]
+#CODE:  
+class Solution {
+    public void insertionSort(int arr[]) {
+        int n=arr.length;
+        for(int i=0;i<n;i++){
+            for(int j=i;j>0;j--){
+                if(arr[j-1]>arr[j]){
+                    int temp=arr[j];
+                    arr[j]=arr[j-1];
+                    arr[j-1]=temp;
+                }else{
+                    break;
+                }
+            }
+        }
+     }
+ }
+EXPLANATION:
+-> The outer loop runs from 0 to n-1, where n is the size of the array.
+-> For each element at position i, the inner loop compares it with all elements in the sorted section of the array (positions 0 to i-1).
+-> If the element at position j-1 is greater than the element at position j, they are swapped to insert the element at the correct position.
+-> The inner loop terminates early using a break statement if the correct position for the current element is found (i.e., no more swaps are needed).
+TIME COMPLEXITY:
+-> Best Case (already sorted): O(N), where N is the size of the array. In this case, the inner loop never performs swaps.
+-> Worst Case (reversed array): O(N²).
+SPACE COMPLEXITY:
+-> The algorithm uses a constant amount of extra space, so the space complexity is O(1).
