@@ -1,0 +1,30 @@
+Problem Link:https://www.geeksforgeeks.org/problems/cyclically-rotate-an-array-by-one2614/1
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Rotate the array by moving each element one position to the right while maintaining the order of elements.
+-> The last element of the array moves to the first position.
+-> Example:
+-> For the array [1, 2, 3, 4]:
+-> After rotation, the array becomes [4, 1, 2, 3].
+#CODE:
+class Solution {
+    public void rotate(int[] arr) {
+        int lastElement=arr[arr.length-1];
+        for(int i=arr.length-2;i>=0;i--){
+            arr[i+1]=arr[i];
+        }
+        arr[0]=lastElement;
+    }
+}
+EXPLANATION:
+-> lastElement is initialized to the last element of the array (arr[arr.length - 1]). This value is temporarily stored 
+   since it needs to move to the first position.
+-> The for loop iterates backward through the array (from the second-to-last element to the first element):
+-> Each element is shifted one position to the right by assigning arr[i] to arr[i + 1].
+-> After the loop, the stored lastElement is placed in the first position (arr[0]).
+TIME COMPLEXITY:
+-> The loop iterates once through the array, making the time complexity O(N), where N is the size of the array.
+SPACE COMPLEXITY:
+-> The algorithm uses a constant amount of extra space (variable lastElement), so the space complexity is O(1).
+
+
