@@ -1,0 +1,54 @@
+Problem Link:https:https://www.geeksforgeeks.org/problems/leaders-in-an-array-1587115620/1
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Traverse the array from right to left to identify all "leader" elements, which are greater than or equal to all elements to their right.
+-> Example:
+  Input: [16, 17, 4, 3, 5, 2]
+  Output: [17, 5, 2]
+  Explanation:
+  -> 17 is greater than all elements to its right.
+  -> 5 is greater than 2 (element to its right).
+  -> 2 is the last element, so it is automatically a leader.
+#CODE:
+class Solution {
+    static ArrayList<Integer> leaders(int arr[]) {
+        ArrayList<Integer> list = new ArrayList<>();
+        int[] nextGreater = new int[arr.length];
+        nextGreater[arr.length-1]=1;
+        int max=arr[arr.length-1];
+        for(int i=arr.length-2;i>=0;i--){
+            if(arr[i]>=max){
+               nextGreater[i]=1;
+            }
+            if(arr[i]>max){
+                max=arr[i];
+            }
+        }
+        for(int i=0;i<nextGreater.length;i++){
+            if(nextGreater[i]==1){
+                list.add(arr[i]);
+            }
+        }
+        return list;
+    }
+}
+EXPLANATION:
+  Initialization:
+  -> Create an ArrayList<Integer> to store the leaders.
+  -> Create an array nextGreater to mark leaders (1 for leader, 0 otherwise).
+  -> Initialize nextGreater[arr.length - 1] = 1 since the last element is always a leader.
+  -> Initialize max as the last element in the array.
+Traverse the Array:
+  -> Start from the second last element and move to the first element.
+  -> If the current element is greater than or equal to max, mark it as a leader in nextGreater.
+  -> Update max if the current element is greater.
+Collect Leaders:
+  -> Iterate through the nextGreater array.
+  -> For each element marked as a leader (nextGreater[i] == 1), add the corresponding element from arr to the list.
+Return the Result:
+  -> Return the list of leaders.
+TIME COMPLEXITY:
+-> The loop runs once through the array in reverse, and another loop collects the leaders.
+   Time Complexity: O(N), where N is the size of the array.
+SPACE COMPLEXITY:
+-> The algorithm uses an auxiliary array nextGreater and a list to store leaders. Space Complexity: O(N).
