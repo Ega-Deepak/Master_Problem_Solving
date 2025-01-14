@@ -1,0 +1,40 @@
+Problem Link: https://www.geeksforgeeks.org/problems/find-duplicates-in-an-array/1?page=1&category=Arrays&difficulty=Easy&sortBy=submissions
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Find all duplicate elements in the array by first sorting it and then comparing adjacent elements.
+-> Add each duplicate element to a list.
+-> Example:
+-> For the array [4, 3, 2, 7, 8, 2, 3, 1]:
+- After sorting, the array becomes [1, 2, 2, 3, 3, 4, 7, 8].
+- Compare adjacent elements:
+- 2 is repeated, so add 2 to the list.
+- 3 is repeated, so add 3 to the list.
+- The method returns [2, 3].
+#CODE:
+class Solution {
+    public List<Integer> findDuplicates(int[] arr) {
+        List<Integer> list= new ArrayList<>();
+        Arrays.sort(arr);
+        for(int i=1;i<arr.length;i++)
+        {
+            if(arr[i]==arr[i-1])
+            list.add(arr[i]);
+        }
+        return list;
+    }
+}
+#EXPLAINATION:
+Initialize List: Create a list (list) to store duplicate elements.
+Sort the Array: Use Arrays.sort(arr) to sort the array in ascending order, so duplicate elements appear next to each other.
+Traverse the Array:
+ -> Start from the second element (i = 1) and compare it with the previous element (arr[i-1]).
+ -> If arr[i] == arr[i-1], the current element is a duplicate, so add it to list.
+Return List: After the loop, return the list containing all duplicate elements.
+TIME COMPLEXITY:
+Sorting: Sorting the array takes O(N log N), where 𝑁, N is the size of the array.
+Traversal: Traversing the array takes O(N).
+-> Overall time complexity is O(N log N).
+SPACE COMPLEXITY:
+-> The algorithm uses extra space for the list, which can store up to N elements in the worst case. 
+    The sorting operation uses O(1) or O(N) auxiliary space depending on the sorting algorithm used.
+-> Effective space complexity is O(N).
