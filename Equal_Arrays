@@ -1,0 +1,48 @@
+Problem Link: https://www.geeksforgeeks.org/problems/check-if-two-arrays-are-equal-or-not3847/1?page=2&category=Arrays&sortBy=submissions
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Check if two arrays are equal by sorting both arrays and comparing their corresponding elements.
+-> If all elements at respective positions are equal after sorting, return true; otherwise, return false.
+-> Example:
+-> For arrays a = [1, 2, 3, 4] and b = [4, 3, 2, 1]:
+After sorting: a becomes [1, 2, 3, 4] and b becomes [1, 2, 3, 4].
+Compare elements:
+  -> Both arrays match at all positions.
+  -> The method returns true.
+For arrays a = [1, 2, 3] and b = [1, 2, 4]:
+After sorting: a becomes [1, 2, 3] and b becomes [1, 2, 4].
+Compare elements:
+  -> Arrays do not match at index 2.
+  -> The method returns false.
+#CODE:
+class Solution {
+    public static boolean checkEqual(int[] a, int[] b) {
+        Arrays.sort(a);
+        Arrays.sort(b);
+        for(int i=0;i<a.length;i++){
+            if(a[i]!=b[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+EXPLANATION:
+Sort Both Arrays:
+-> Use Arrays.sort(a) and Arrays.sort(b) to sort both arrays in ascending order.
+-> This ensures that elements in the same position can be directly compared.
+Compare Elements:
+-> Use a for loop to traverse the arrays.
+-> Compare the elements at the same index:
+    -> If any pair of elements is not equal, return false.
+    -> If all elements are equal, the arrays are considered identical.
+Return Result:
+-> If the loop completes without finding a mismatch, return true.
+TIME COMPLEXITY:
+Sorting: Sorting both arrays takes 𝑂(𝑁log⁡𝑁) where N is the size of the arrays.
+Traversal: Traversing the arrays to compare elements takes O(N).
+  -> Overall time complexity is O(NlogN).
+SPACE COMPLEXITY:
+-> Sorting uses O(1) or O(N) auxiliary space depending on the sorting algorithm used.
+-> No additional data structures are used beyond the input arrays.
+-> Effective space complexity is O(1) or O(N).
