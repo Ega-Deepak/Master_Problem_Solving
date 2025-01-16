@@ -1,0 +1,58 @@
+Problem Link: https://www.geeksforgeeks.org/problems/first-repeating-element4018/1?page=3&category=Arrays&sortBy=submissions
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Use a HashMap to store the first occurrence index of each element in the array.
+-> Iterate through the array, and whenever a duplicate element is encountered, update the position of the first repeating element if it is earlier than the currently stored one.
+-> Return the 1-based index of the first repeating element. If no element repeats, return -1.
+EXAMPLE:
+Input:
+arr = [1, 5, 3, 4, 3, 5, 6]
+Process:
+Traverse the array:
+    For 1: Add it to the map with index 1.
+    For 5: Add it to the map with index 2.
+    For 3: Add it to the map with index 3.
+    For 4: Add it to the map with index 4.
+    For 3: It’s already in the map with index 3. Update ansIndex to 3.
+    For 5: It’s already in the map with index 2. Update ansIndex to 2 (earlier than 3).
+    For 6: Add it to the map with index 7.
+    The first repeating element is at index 2 (1-based).
+#CODE:
+class Solution {
+    public static int firstRepeated(int[] arr) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        int ansIndex=Integer.MAX_VALUE;
+        for(int i=0;i<arr.length;i++){
+            if(!map.containsKey(arr[i])){
+                map.put(arr[i],i+1);
+            }else{
+                int index=map.get(arr[i]);
+                if(index<ansIndex){
+                    ansIndex=index;
+                }
+            }
+        }
+        if(ansIndex==Integer.MAX_VALUE){
+            return -1;
+        }
+        return ansIndex;
+    }
+}
+EXPLANATION:
+Initialize Map: Use a HashMap to store the first occurrence index of elements.
+Traverse the Array:
+For each element:
+-> If it’s not in the map, add it with its 1-based index.
+-> If it’s already in the map, retrieve its stored index and update ansIndex if the stored index is smaller than ansIndex.
+Check Result:
+-> If ansIndex remains unchanged (Integer.MAX_VALUE), no repeating element exists; return -1.
+-> Otherwise, return the 1-based index of the first repeating element.
+TIME COMPLEXITY:
+HashMap Operations:
+-> Each insertion or lookup in the map takes O(1) on average.
+-> Total traversal of the array is O(N).
+-> Overall: O(N).
+SPACE COMPLEXITY:
+HashMap Storage:
+-> In the worst case, the map stores all elements, requiring O(N) space.
+-> Effective Space Complexity: O(N).
