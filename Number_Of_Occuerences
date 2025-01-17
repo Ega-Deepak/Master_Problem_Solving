@@ -1,0 +1,48 @@
+Problem Link: https://www.geeksforgeeks.org/problems/number-of-occurrence2259/1?page=1&category=Arrays&difficulty=Easy&sortBy=submissions
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Create a helper function countFreq that counts the occurrences of a specific element (target) in the array.
+-> Traverse the array, and for each element, compare its value with the target.
+-> Increment a count variable whenever a match is found.
+-> Return the total count after traversing the array.
+EXAMPLE:
+Input:
+arr = [1, 5, 3, 4, 3, 5, 6], target = 5
+Process:
+Traverse the array:
+-> For 1 (-> Does not match target (count = 0)).
+-> For 5 (-> Matches target (count = 1)).
+-> For 3 (-> Does not match target (count = 1)).
+-> For 4 (-> Does not match target (count = 1)).
+-> For 3 (-> Does not match target (count = 1)).
+-> For 5 (-> Matches target (count = 2)).
+-> For 6 (-> Does not match target (count = 2)).
+Output: 2
+#CODE:
+class Solution {
+    int countFreq(int[] arr, int target) {
+        int count=0;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==target){
+                count++;
+            }
+        }
+        return count;
+    }
+}
+EXPLANATION:
+Initialization:
+-> Define a variable count to store the frequency of the target element in the array.
+Traverse the Array:
+-> For each element in the array, compare it with the target.
+-> If the element matches the target, increment the count variable.
+Return the Result:
+-> Once the traversal is complete, return the count as the frequency of the target.
+TIME COMPLEXITY:
+Array Traversal:
+-> Traverse the array once, which takes O(N).
+Overall: O(N).
+SPACE COMPLEXITY:
+-> No additional data structures are used, only a variable count is maintained.
+Effective Space Complexity:
+-> O(1).
