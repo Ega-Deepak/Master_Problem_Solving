@@ -1,0 +1,62 @@
+Problem Link: https://leetcode.com/problems/two-sum/
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Nested Loop Method: Use two loops to traverse the array and check for a pair of elements whose sum equals the target.
+-> Identify the Pair:
+-> For each element nums[i] in the array, use an inner loop to iterate through the remaining elements nums[j] (where j > i).
+-> Check if the sum of nums[i] and nums[j] equals the given target.
+-> Store Indices:
+-> If a pair is found, store the indices i and j in an array arr and break the loop.
+-> Return Result:
+-> Return the array containing the indices of the two numbers. If no such pair exists, the method does not explicitly handle this case.
+EXAMPLE:
+Input:
+-> nums = [2, 7, 11, 15]
+-> target = 9
+Process:
+-> Traverse the array:
+-> Outer loop (i = 0): Check nums[0] = 2.
+-> Inner loop (j = 1): Check nums[1] = 7.
+-> Sum = 2 + 7 = 9. Match found. Store arr = [0, 1].
+-> Break the inner loop since the target is found.
+-> Remaining iterations are skipped since the pair is already found.
+Output:
+-> Indices of the two numbers: [0, 1].
+#CODE:
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[] arr = new int[2];
+        for(int i=0;i<nums.length;i++){
+            for(int j=i+1;j<nums.length;j++){
+                if(nums[i]+nums[j]==target){
+                    arr[0]=i;
+                    arr[1]=j;
+                    break;
+                }
+            }
+        }
+        return arr;
+    }
+}
+EXPLANATION:
+-> Nested Loop:
+-> The outer loop iterates over all elements nums[i] in the array.
+-> The inner loop iterates over the elements nums[j] starting from the next index (j = i + 1).
+-> Condition Check:
+-> For each pair (i, j), check if nums[i] + nums[j] == target.
+-> Store and Break:
+-> If a match is found, store the indices i and j in the result array arr and break the inner loop.
+-> Return Result:
+-> Return the array arr containing the indices of the matching pair.
+TIME COMPLEXITY:
+-> Outer Loop:
+-> Runs for N iterations.
+-> Inner Loop:
+-> On average, runs for N/2 iterations.
+-> Overall:
+-> Time Complexity: O(N^2) (Quadratic complexity due to nested loops).
+SPACE COMPLEXITY:
+-> Result Array:
+-> Requires O(1) space for storing the two indices.
+-> Effective Space Complexity:
+-> O(1).
