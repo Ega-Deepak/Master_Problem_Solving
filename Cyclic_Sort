@@ -1,0 +1,67 @@
+Problem Link:https: https://www.geeksforgeeks.org/problems/find-missing-and-repeating2512/1?page=1&category=Arrays&difficulty=Easy&sortBy=submissions
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> The task is to find one repeated and one missing number in the array. 
+-> Use cyclic sort to place each element at its correct position and identify the discrepancies.
+-> Example:
+   Input: [4, 3, 6, 2, 1, 1]
+   Output: [1, 5]
+   Explanation:
+   -> The number 1 is repeated.
+   -> The number 5 is missing since it doesn't appear in the array.
+
+# CODE:
+class Solution {
+    ArrayList<Integer> findTwoElement(int arr[]) {
+        int i = 0;
+        ArrayList<Integer> list = new ArrayList<>();
+        while (i < arr.length) {
+            int correct = arr[i] - 1;
+            if (arr[i] != arr[correct]) {
+                arr[i] = arr[i] + arr[correct] - (arr[correct] = arr[i]);
+            } else {
+                i++;
+            }
+        }
+        for (i = 0; i < arr.length; i++) {
+            if (arr[i] != i + 1) {
+                list.add(arr[i]); 
+                list.add(i + 1); 
+            }
+        }
+        return list;
+    }
+}
+
+EXPLANATION:
+Initialization:
+-> Initialize an ArrayList<Integer> to store the repeated and missing numbers.
+Cyclic Sort:
+-> Traverse the array using an index pointer i.
+-> For each element at index i, calculate its correct position as arr[i] - 1.
+-> If the current element is not at its correct position, swap it with the element at its correct position.
+-> If the current element is already in its correct position, move to the next index.
+Identify Discrepancies:
+-> After sorting, any mismatch between the index and value indicates:
+   -> The value at that position is the repeated number.
+   -> The index + 1 is the missing number.
+Collect Results:
+-> Add the repeated and missing numbers to the ArrayList.
+Return the Result:
+-> Return the ArrayList containing the repeated and missing numbers.
+
+ANOTHER EXAMPLE:
+Input: [3, 1, 2, 5, 3]
+Output: [3, 4]
+Explanation:
+-> After cyclic sort, the array becomes: [1, 2, 3, 3, 5].
+-> The repeated number is 3 (appears twice).
+-> The missing number is 4 (does not appear in the array).
+
+TIME COMPLEXITY:
+-> The cyclic sort takes O(N) since each element is placed at its correct position with constant-time swaps.
+-> The second loop to find discrepancies also takes O(N).
+   Total Time Complexity: O(N).
+SPACE COMPLEXITY:
+-> The algorithm uses an ArrayList for output, which is O(1) additional space for computation.
+   Space Complexity: O(1).
