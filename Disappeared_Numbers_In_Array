@@ -1,0 +1,51 @@
+Problem Link:https: https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+  -> The task is to find all numbers that are missing in the given array where elements are in the range [1, n].
+  -> Use cyclic sort to place each element at its correct position and identify missing numbers.
+ EXAMPLE:
+   Input: [4, 3, 2, 7, 8, 2, 3, 1]
+   Output: [5, 6]
+   Explanation:
+      -> After cyclic sort, the array becomes: [1, 2, 3, 4, 3, 2, 7, 8].
+      -> The missing numbers are 5 and 6 since they do not appear in the array.
+
+class Solution {
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        List<Integer> list = new ArrayList<Integer>();
+        int i = 0;
+        while (i < nums.length) {
+            int correct = nums[i] - 1;
+            if (nums[i] != nums[correct]) {
+                nums[i] = nums[i] + nums[correct] - (nums[correct] = nums[i]);
+            } else {
+                i++;
+            }
+        }
+        for (i = 0; i < nums.length; i++) {
+            if (nums[i] != i + 1) {
+                list.add(i + 1);
+            }
+        }
+        return list;
+    }
+}
+
+ EXPLANATION:
+  -> Initialize a List to store missing numbers.
+  -> Perform cyclic sort by ensuring each element is placed at its correct position using constant-time swaps.
+  -> After sorting, identify indices where the element does not match the index + 1, which represents missing numbers.
+  -> Add these missing numbers to the List and return it.
+ ANOTHER EXAMPLE:
+  Input: [2, 3, 1, 8, 2, 3, 5, 1]
+  Output: [4, 6, 7]
+  Explanation:
+   -> After cyclic sort, the array becomes: [1, 2, 3, 1, 5, 2, 8, 3].
+   -> Missing numbers are 4, 6, and 7 since they do not appear in the array.
+TIME COMPLEXITY:
+  -> The cyclic sort takes O(N) since each element is placed at its correct position with constant-time swaps.
+  -> The second loop to find missing numbers also takes O(N).
+  Total Time Complexity: O(N).
+ SPACE COMPLEXITY:
+   -> The algorithm uses a List for output, which is O(1) additional space for computation.
+   Space Complexity: O(1).
