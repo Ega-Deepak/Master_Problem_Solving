@@ -1,4 +1,4 @@
-Problem Link:https: https://www.geeksforgeeks.org/problems/find-missing-and-repeating2512/1?page=1&category=Arrays&difficulty=Easy&sortBy=submissions
+Problem Link:https: https://leetcode.com/problems/missing-number/description/
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 APPROACH:
 -> The task is to find one repeated and one missing number in the array. 
