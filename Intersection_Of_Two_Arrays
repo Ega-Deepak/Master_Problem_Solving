@@ -1,0 +1,56 @@
+Problem Link: https://leetcode.com/problems/intersection-of-two-arrays/
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+  -> The task is to find the intersection of two arrays, i.e., elements common in both arrays without duplicates.
+  -> Use a HashSet to store unique elements from the second array and check for matches in the first array.
+EXAMPLE:
+  Input: nums1 = [1, 2, 2, 1], nums2 = [2, 2]
+  Output: [2]
+  Explanation:
+    -> Add elements of nums2 to a HashSet: {2}.
+    -> Check elements in nums1 against the HashSet:
+         - Element 1: Not in the set, skip.
+         - Element 2: In the set, add to result and remove from set to avoid duplicates.
+    -> Result: [2].
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int i = 0; i < nums2.length; i++) {
+            set.add(nums2[i]);
+        }
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < nums1.length; i++) {
+            if (set.contains(nums1[i])) {
+                list.add(nums1[i]);
+                set.remove(nums1[i]);
+            }
+        }
+        int[] arr = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            arr[i] = list.get(i);
+        }
+        return arr;
+    }
+}
+EXPLANATION:
+  -> Initialize a HashSet to store unique elements from nums2.
+  -> Traverse nums1 and check if each element is present in the HashSet:
+       - If yes, add the element to the result and remove it from the HashSet to prevent duplicate entries.
+  -> Convert the ArrayList result to an array and return it.
+ANOTHER EXAMPLE:
+  Input: nums1 = [4, 9, 5], nums2 = [9, 4, 9, 8, 4]
+  Output: [9, 4]
+  Explanation:
+    -> Add elements of nums2 to a HashSet: {9, 4, 8}.
+    -> Check elements in nums1 against the HashSet:
+         - Element 4: In the set, add to result and remove from set.
+         - Element 9: In the set, add to result and remove from set.
+         - Element 5: Not in the set, skip.
+    -> Result: [9, 4].
+TIME COMPLEXITY:
+  -> The loop to populate the HashSet takes O(M), where M is the length of nums2.
+  -> The loop to check nums1 against the HashSet takes O(N), where N is the length of nums1.
+  Total Time Complexity: O(M + N).
+SPACE COMPLEXITY:
+  -> The HashSet and ArrayList used for computation take O(M + N) space.
+  Space Complexity: O(M + N).
