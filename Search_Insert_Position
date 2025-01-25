@@ -1,0 +1,83 @@
+Problem Link: https://leetcode.com/problems/search-insert-position/description/
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+APPROACH:  
+-> Binary Search Method: Use a divide-and-conquer strategy to efficiently find the target's index or its appropriate insertion position in a sorted array.  
+-> Initialize Pointers:  
+-> Start with two pointers, start pointing to the beginning of the array and end pointing to the last element.  
+-> Calculate Middle Index:  
+-> Use the formula mid = start + (end - start) / 2 to determine the middle index of the current search range (avoids overflow).  
+-> Compare Midpoint Value:  
+-> If nums[mid] equals the target, return mid as the index of the target.  
+-> Adjust Search Range:  
+-> If nums[mid] is greater than the target, shift the search range to the left by setting end = mid - 1.  
+-> If nums[mid] is less than the target, shift the search range to the right by setting start = mid + 1.  
+-> Return Insert Position:  
+-> If the target is not found, return start as the index where the target should be inserted.  
+EXAMPLE:  
+Input:  
+-> nums = [1, 3, 5, 6]  
+-> target = 5  
+Process:  
+-> Initialize pointers: start = 0, end = 3.  
+-> Calculate mid: mid = 0 + (3 - 0) / 2 = 1.  
+-> Compare: nums[1] = 3, which is less than the target.  
+-> Update start: start = mid + 1 = 2.  
+-> Recalculate mid: mid = 2 + (3 - 2) / 2 = 2.  
+-> Compare: nums[2] = 5, which matches the target.  
+-> Return mid = 2.  
+Output:  
+-> Index of the target: 2.  
+EXAMPLE:  
+Input:  
+-> nums = [1, 3, 5, 6]  
+-> target = 2  
+Process:  
+-> Initialize pointers: start = 0, end = 3.  
+-> Calculate mid: mid = 0 + (3 - 0) / 2 = 1.  
+-> Compare: nums[1] = 3, which is greater than the target.  
+-> Update end: end = mid - 1 = 0.  
+-> Recalculate mid: mid = 0 + (0 - 0) / 2 = 0.  
+-> Compare: nums[0] = 1, which is less than the target.  
+-> Update start: start = mid + 1 = 1.  
+-> Loop terminates as start > end.  
+-> Return start = 1 as the insertion position.  
+Output:  
+-> Index of the target or insertion position: 1.  
+#CODE:  
+class Solution {  
+    public int searchInsert(int[] nums, int target) {  
+        int start = 0;  
+        int end = nums.length - 1;  
+        while (start <= end) {  
+            int mid = start + (end - start) / 2;  
+            if (nums[mid] == target) {  
+                return mid;  
+            } else if (nums[mid] > target) {  
+                end = mid - 1;  
+            } else {  
+                start = mid + 1;  
+            }  
+        }  
+        return start;  
+    }  
+}  
+EXPLANATION:  
+-> Initialize Pointers:  
+-> Start and end pointers define the search range, initially covering the entire array.  
+-> Calculate Midpoint:  
+-> The midpoint index divides the current range into two halves.  
+-> Condition Check:  
+-> If the value at the midpoint matches the target, return the midpoint index.  
+-> Adjust Search Range:  
+-> If the midpoint value is larger than the target, discard the right half by moving end.  
+-> If the midpoint value is smaller than the target, discard the left half by moving start.  
+-> Return Insert Position:  
+-> If the loop terminates without finding the target, return start as the position for insertion.  
+TIME COMPLEXITY:  
+-> Halving Search Range:  
+-> The search range is halved at each step, resulting in logarithmic complexity.  
+-> Time Complexity: O(log N).  
+SPACE COMPLEXITY:  
+-> Iterative Approach:  
+-> No additional data structures are used, resulting in constant space usage.  
+-> Space Complexity: O(1).  
