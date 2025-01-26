@@ -1,0 +1,82 @@
+Problem Link: https://leetcode.com/problems/sqrtx/description/  
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+APPROACH:  
+-> Binary Search Method: Use a divide-and-conquer strategy to efficiently find the integer square root of a non-negative integer x.  
+-> Initialize Pointers:  
+   - Start with two pointers: l (left) initialized to 1 and r (right) initialized to x.  
+-> Calculate Middle Index:  
+   - Use the formula mid = (l + r) / 2 to determine the midpoint of the current search range.  
+-> Compare mid with x / mid:  
+   - If mid multiplied by itself equals x, return mid as the integer square root.  
+   - If mid is greater than x / mid, move the right pointer leftward by setting r = mid - 1.  
+   - If mid is less than x / mid, move the left pointer rightward by setting l = mid + 1.  
+-> Return Result:  
+   - If the loop terminates without finding an exact match, return r, as it will point to the largest integer whose square is less than or equal to x.  
+EXAMPLE:  
+Input:  
+-> x = 8  
+Process:  
+-> Initialize pointers: l = 1, r = 8.  
+-> Calculate mid: mid = (1 + 8) / 2 = 4.  
+-> Compare: 8 / 4 = 2, 2 < 4.  
+-> Update right: r = mid - 1 = 3.  
+-> Recalculate mid: mid = (1 + 3) / 2 = 2.  
+-> Compare: 8 / 2 = 4, 4 > 2.  
+-> Update left: l = mid + 1 = 3.  
+-> Recalculate mid: mid = (3 + 3) / 2 = 3.  
+-> Compare: 8 / 3 = 2, 3 > 2.  
+-> Update right: r = mid - 1 = 2.  
+-> Loop terminates as l > r.  
+-> Return r = 2.  
+Output:  
+-> Integer square root of x: 2.  
+EXAMPLE:  
+Input:  
+-> x = 16  
+Process:  
+-> Initialize pointers: l = 1, r = 16.  
+-> Calculate mid: mid = (1 + 16) / 2 = 8.  
+-> Compare: 16 / 8 = 2, 2 < 8.  
+-> Update right: r = mid - 1 = 7.  
+-> Recalculate mid: mid = (1 + 7) / 2 = 4.  
+-> Compare: 16 / 4 = 4, 4 == 4.  
+-> Return mid = 4.  
+Output:  
+-> Integer square root of x: 4.  
+#CODE:  
+class Solution {  
+    public int mySqrt(int x) {  
+        int l = 1;  
+        int r = x;  
+        while (l <= r) {  
+            int mid = (l + r) / 2;  
+            if (x / mid == mid) {  
+                return mid;  
+            } else if (mid > x / mid) {  
+                r = mid - 1;  
+            } else {  
+                l = mid + 1;  
+            }  
+        }  
+        return r;  
+    }  
+}  
+EXPLANATION:  
+-> Initialize Pointers:  
+   - The left (l) and right (r) pointers define the search range for the square root.  
+-> Calculate Midpoint:  
+   - The midpoint index splits the current range for evaluation.  
+-> Condition Check:  
+   - If mid * mid = x, the exact integer square root is found.  
+   - If mid is too large, shrink the range by moving r.  
+   - If mid is too small, expand the range by moving l.  
+-> Return Largest Valid r:  
+   - r will hold the largest integer whose square is less than or equal to x.  
+TIME COMPLEXITY:  
+-> Halving Search Range:  
+   - The search range is halved at each step, resulting in logarithmic complexity.  
+   - Time Complexity: O(log N).  
+SPACE COMPLEXITY:  
+-> Iterative Approach:  
+   - No additional data structures are used, resulting in constant space usage.  
+   - Space Complexity: O(1).  
