@@ -1,0 +1,49 @@
+Problem Link: https://leetcode.com/problems/search-a-2d-matrix/
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Create a function searchMatrix to search for the target element in a 2D matrix.
+-> Traverse each row of the matrix and check if the target lies within the range of the current row (i.e., between the first and last elements of the row).
+-> If the target is within the range, iterate through the elements of that row to check for a match.
+-> Return true if the target is found; otherwise, return false.
+EXAMPLE: Input:
+matrix = [[1, 3, 5], [7, 9, 11], [13, 15, 17]], target = 9
+Process:
+-> Traverse the rows:
+-> For row 1: [1, 3, 5] (target not in range 1 to 5, skip).
+-> For row 2: [7, 9, 11] (target in range 7 to 11, check elements).
+-> Compare each element:
+-> For 7 (not target).
+-> For 9 (matches target, return true).
+Output: true
+CODE:
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        for(int i=0;i<matrix.length;i++){
+            if(target>=matrix[i][0] && target<=matrix[i][matrix[i].length-1]){
+                for(int j=0;j<matrix[i].length;j++){
+                    if(matrix[i][j]==target){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+}
+EXPLANATION:
+Initialization:
+-> Iterate through each row of the matrix.
+Row Range Check:
+-> Check if the target lies between the first and last elements of the current row (matrix[i][0] and matrix[i][matrix[i].length - 1]).
+Element Comparison:
+-> If the target is in the range, iterate through all elements of the row.
+-> If an element matches the target, return true.
+Return Result:
+-> If no match is found after iterating through the entire matrix, return false.
+TIME COMPLEXITY:
+-> Row Traversal: Iterate through all rows, which takes O(M) where M is the number of rows.
+-> Element Traversal: For a row with N elements, the inner loop takes O(N).
+-> Overall: O(M * N).
+SPACE COMPLEXITY:
+-> No additional data structures are used, only loop variables are maintained.
+-> Effective Space Complexity: O(1).
