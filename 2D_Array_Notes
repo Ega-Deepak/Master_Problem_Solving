@@ -1,0 +1,30 @@
+-> A 2D array in Java is an array of arrays, used to store a matrix or table of elements. Each element in a 2D array is accessed by a pair of indices: one for the row and one for the column.
+Characteristics of 2D Arrays:
+Rows and Columns: Organized in rows and columns like a grid.
+Homogeneous Elements: All elements in a 2D array must be of the same type.
+Fixed Size: The number of rows and columns is fixed once declared.
+Zero-Based Indexing: Both rows and columns are indexed starting from 0.
+Declaration and Initialization:
+Static declaration and initialization:
+int[][] arr = {  
+    {1, 2, 3},  
+    {4, 5, 6},  
+    {7, 8, 9}  
+};  
+Dynamic declaration and initialization:
+int[][] arr = new int[3][3];  
+arr[0][0] = 1; // Assign value to a specific element.  
+-> To get the dimensions of a 2D array, we use length:
+Ex:
+int[][] arr = new int[3][4];  
+arr.length; // Number of rows (3).  
+arr[0].length; // Number of columns (4).  
+-> To access or iterate through elements, use nested loops:
+CODE:
+for (int i = 0; i < arr.length; i++) { // Iterate through rows  
+    for (int j = 0; j < arr[i].length; j++) { // Iterate through columns  
+        System.out.println("Element at [" + i + "][" + j + "]: " + arr[i][j]);  
+    }  
+}  
+-> A 2D array starts indexing from [0][0] for the first row and column.
+-> Rows and columns are iterated separately using nested loops.
