@@ -1,0 +1,59 @@
+Problem Link: https://leetcode.com/problems/matrix-diagonal-sum/  
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+APPROACH:  
+-> Create a function diagonalSum to calculate the sum of the primary and secondary diagonals of a square matrix.  
+-> Initialize sum to 0 and col to the index of the last column (mat[0].length - 1).  
+-> Traverse each row of the matrix and for each element in the row, check if it belongs to the primary or secondary diagonal.  
+-> Add the values of the diagonal elements to sum.  
+-> Return the final sum.  
+EXAMPLE:  
+Input:  
+mat = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]  
+Process:  
+-> Initialize sum = 0 and col = 2 (last column index).  
+-> Traverse each row:  
+   - For row 1: [1, 2, 3]:  
+      -> Add 1 (primary diagonal, i=0, j=0).  
+      -> Add 3 (secondary diagonal, i=0, j=2).  
+   - For row 2: [4, 5, 6]:  
+      -> Add 5 (primary diagonal, i=1, j=1, and secondary diagonal overlap).  
+   - For row 3: [7, 8, 9]:  
+      -> Add 9 (primary diagonal, i=2, j=2).  
+      -> Add 7 (secondary diagonal, i=2, j=0).  
+-> Total sum = 1 + 3 + 5 + 9 + 7 = 25.  
+Output: 25  
+CODE:  
+class Solution {
+    public int diagonalSum(int[][] mat) {
+        int sum = 0;
+        int col = mat[0].length - 1;
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat[i].length; j++) {
+                if (i == j) {
+                    sum += mat[i][j]; 
+                } else if (j == col - i) {
+                    sum += mat[i][col - i];
+                }
+            }
+        }
+        return sum;
+    }
+}
+EXPLANATION:
+Initialization:
+-> Initialize sum = 0 to store the diagonal sum.
+-> Set col to the last column index (mat[0].length - 1).
+Diagonal Check:
+-> Traverse the matrix row by row and column by column.
+-> For each element mat[i][j]:
+Add it to sum if it lies on the primary diagonal (i == j).
+Add it to sum if it lies on the secondary diagonal (j == col - i).
+Return Result:
+-> After iterating through all rows and columns, return the value of sum.
+TIME COMPLEXITY:
+-> Outer Loop: Traverse all rows, O(M), where M is the number of rows.
+-> Inner Loop: Traverse all columns for each row, O(N), where N is the number of columns.
+-> Overall: O(M * N).
+SPACE COMPLEXITY:
+-> No additional data structures are used, only variables (sum and col) are maintained.
+-> Effective Space Complexity: O(1).
