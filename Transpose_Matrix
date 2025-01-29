@@ -1,0 +1,61 @@
+Problem Link: https://leetcode.com/problems/transpose-matrix/
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+APPROACH:  
+-> Create a function transpose to compute the transpose of a given matrix.  
+-> Initialize R as the number of rows (A.length) and C as the number of columns (A[0].length).  
+-> Create a new matrix ans with dimensions C x R to store the transposed matrix.  
+-> Traverse each element of the input matrix A, swapping rows and columns, i.e., storing A[r][c] in ans[c][r].  
+-> Return the transposed matrix.  
+EXAMPLE:  
+Input:  
+A = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]  
+Process:  
+-> Initialize R = 3 (rows), C = 3 (columns).  
+-> Create an empty matrix ans of size C x R (3x3).  
+-> Traverse each row and column:  
+   - For row 1: [1, 2, 3]  
+      -> ans[0][0] = 1 (swap row & col indices).  
+      -> ans[1][0] = 2.  
+      -> ans[2][0] = 3.  
+   - For row 2: [4, 5, 6]  
+      -> ans[0][1] = 4.  
+      -> ans[1][1] = 5.  
+      -> ans[2][1] = 6.  
+   - For row 3: [7, 8, 9]  
+      -> ans[0][2] = 7.  
+      -> ans[1][2] = 8.  
+      -> ans[2][2] = 9.  
+-> Transposed matrix:  
+   [[1, 4, 7],  
+    [2, 5, 8],  
+    [3, 6, 9]]  
+Output: [[1, 4, 7], [2, 5, 8], [3, 6, 9]]  
+CODE:  
+class Solution {  
+    public int[][] transpose(int[][] A) {  
+        int R = A.length, C = A[0].length;  
+        int[][] ans = new int[C][R];  
+        for (int r = 0; r < R; ++r)  
+            for (int c = 0; c < C; ++c) {  
+                ans[c][r] = A[r][c];  
+            }  
+        return ans;  
+    }  
+}  
+EXPLANATION:  
+Initialization:  
+-> Initialize R as the number of rows (A.length).  
+-> Initialize C as the number of columns (A[0].length).  
+-> Create an empty matrix ans of size C x R to store the transposed matrix.  
+Transpose Process:  
+-> Iterate through each row (r) and column (c) of matrix A.  
+-> Swap the row and column indices and store the value in ans[c][r].  
+Return Result:  
+-> After iterating through the entire matrix, return ans, which contains the transposed values.  
+TIME COMPLEXITY:  
+-> Outer Loop: Iterates over all rows, O(R), where R is the number of rows.  
+-> Inner Loop: Iterates over all columns for each row, O(C), where C is the number of columns.  
+-> Overall: O(R * C).  
+SPACE COMPLEXITY:  
+-> Uses an additional matrix ans of size C x R.  
+-> Effective Space Complexity: O(R * C).  
