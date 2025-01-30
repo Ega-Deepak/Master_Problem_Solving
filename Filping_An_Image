@@ -1,0 +1,53 @@
+Problem Link: https://leetcode.com/problems/flipping-an-image/
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:  
+-> Create a function flipAndInvertImage to flip and invert a binary matrix.  
+-> First, invert the image by flipping all bits (0 to 1 and 1 to 0) using XOR operation.  
+-> Then, reverse each row to achieve the final transformation.  
+CODE:  
+class Solution {  
+    public int[][] flipAndInvertImage(int[][] image) {  
+        for(int i=0;i<image.length;i++){  
+            for(int j=0;j<image[i].length;j++){  
+                image[i][j]^=1;
+            }  
+        }  
+        for(int k=0;k<image.length;k++){  
+            swap(image[k]);
+        }  
+        return image;  
+    }  
+    public void swap(int[] arr){  
+        int i=0;  
+        int n=arr.length-1;  
+        while(i<n){  
+            int temp=arr[i];  
+            arr[i]=arr[n];  
+            arr[n]=temp;  
+            i++;  
+            n--;  
+        }  
+    }  
+}  
+EXAMPLE:  
+Input:  
+image = [[1, 0, 1], [0, 1, 0], [1, 1, 0]]  
+Process:  
+-> Step 1: Flip bits using XOR (^=1)  
+   Transformed matrix: [[0, 1, 0], [1, 0, 1], [0, 0, 1]]  
+-> Step 2: Reverse each row  
+   Final matrix: [[0, 1, 0], [1, 0, 1], [1, 0, 0]]  
+Output:  
+[[0, 1, 0], [1, 0, 1], [1, 0, 0]]  
+EXPLANATION:  
+Bit Flipping:  
+-> Iterate through each element of the matrix and flip bits using XOR operation.  
+Row Reversal:  
+-> Reverse each row to get the final flipped and inverted image.  
+TIME COMPLEXITY:  
+-> Flipping bits: Iterating through all elements takes O(M * N).  
+-> Row reversal: Swapping elements in each row takes O(N) per row, leading to O(M * N).  
+-> Overall Complexity: O(M * N).  
+SPACE COMPLEXITY:  
+-> No extra space is used apart from loop variables.  
+-> Effective Space Complexity: O(1).  
