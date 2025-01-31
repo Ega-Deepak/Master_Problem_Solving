@@ -1,0 +1,72 @@
+PROBLEM: https://leetcode.com/problems/set-matrix-zeroes/
+Given an m x n matrix, modify it in place such that if an element is 0, set its entire row and column to 0.
+APPROACH:  
+-> Create a pair class to store row and column indices of zero elements.  
+-> Use a stack to keep track of all positions where matrix[i][j] == 0.  
+-> Traverse the matrix and push all zero positions into the stack.  
+-> Pop elements from the stack and set corresponding rows and columns to zero.  
+EXAMPLE:  
+Input:  
+matrix = [[1, 2, 3], [4, 0, 6], [7, 8, 9]]  
+Process:  
+-> Identify zero at position (1,1).  
+-> Set row 1 and column 1 to zero.  
+Modified matrix:  
+[[1, 0, 3],  
+ [0, 0, 0],  
+ [7, 0, 9]]  
+Output:  
+[[1, 0, 3], [0, 0, 0], [7, 0, 9]]  
+CODE:  
+class Solution {  
+   class pair {  
+        int f;  
+        int s;  
+        pair(int F, int S) {  
+            this.f = F;  
+            this.s = S;  
+        }  
+    }  
+    public void setZeroes(int[][] matrix) {  
+        Stack<pair> s = new Stack<pair>();  
+        int m = matrix.length;  
+        int n = matrix[0].length;  
+        for (int i = 0; i < m; i++) {  
+            for (int j = 0; j < n; j++) {  
+                if (matrix[i][j] == 0)  
+                    s.push(new pair(i, j));  
+            }  
+        }  
+        while (!s.isEmpty()) {  
+            int row = s.peek().f;  
+            int col = s.peek().s;  
+            s.pop();  
+            for (int c = 0; c < n; c++) {  
+                matrix[row][c] = 0;  
+            }  
+            for (int r = 0; r < m; r++) {  
+                matrix[r][col] = 0;  
+            }  
+        }  
+    }  
+}  
+EXPLANATION:  
+Initialization:  
+-> Define a pair class to store row and column indices.  
+-> Initialize a stack s to store positions of zeros.  
+-> Get matrix dimensions m and n.  
+Stack Processing:  
+-> Traverse the matrix and push positions where matrix[i][j] == 0.  
+-> While stack is not empty, pop row and column indices.  
+-> Set all elements in that row and column to zero.  
+RETURN RESULT:  
+-> The modified matrix is updated in-place.  
+TIME COMPLEXITY:  
+-> Traversing the matrix: O(M * N), where M is the number of rows and N is the number of columns.  
+-> Setting rows and columns to zero: O(M * N) in the worst case.  
+-> Overall Complexity: O(M * N).  
+
+SPACE COMPLEXITY:  
+-> Using a stack to store zero positions: O(K), where K is the number of zero elements.  
+-> Worst case: O(M * N) if all elements are zero.  
+-> Effective Space Complexity: O(M * N) in the worst case.
