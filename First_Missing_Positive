@@ -1,0 +1,51 @@
+Problem Link: https://leetcode.com/problems/first-missing-positive/submissions/887421034/
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Use cyclic sort to place numbers in their correct positions.
+-> If an element is in the range [1, N] and not in its correct position (nums[i] != nums[nums[i] - 1]), swap it to its correct position.
+-> After sorting, traverse the array to find the first missing positive number.
+Example:
+  Input: [3, 4, -1, 1]
+  Output: 2
+  Explanation:
+  -> After placing elements in their correct positions, the array becomes [1, -1, 3, 4].
+  -> The first missing positive integer is 2.
+#CODE:
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+         int i=0;
+        while(i<nums.length){
+            int correct=nums[i]-1;
+            if(nums[i]>0 && nums[i]<=nums.length && nums[i]!=nums[correct]){
+                swap(nums,i,correct);
+            }else{
+                i++;
+            }
+        }
+        for(int index=0;index<nums.length;index++){
+            if(index!=nums[index]-1){
+               return index+1;
+            }
+        }
+       return nums.length+1;
+    }
+    static void swap(int[] len,int start,int end){
+        int temp = len[start];
+        len[start]=len[end];
+        len[end]=temp;
+    }
+}
+EXPLANATION:
+1. Sorting Phase (Cyclic Sort)
+   -> Iterate through the array.
+   -> If nums[i] is in the range [1, N] and not in its correct position, swap it to its correct position (nums[i] - 1).
+   -> Continue until all elements are placed correctly.
+2. Finding Missing Positive
+   -> Traverse the array to find the first index where nums[index] != index + 1.
+   -> Return index + 1 as the missing positive integer.
+   -> If all numbers are in place, return nums.length + 1.
+TIME COMPLEXITY:
+-> Each element is swapped at most once, leading to an overall complexity of O(N).
+SPACE COMPLEXITY:
+-> The algorithm modifies the input array in place and uses constant extra space.
+   Space Complexity: O(1).
