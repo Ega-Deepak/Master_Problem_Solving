@@ -1,0 +1,49 @@
+Problem Link: https://leetcode.com/problems/squares-of-a-sorted-array/
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Square each element in the given array.
+-> Sort the squared array in non-decreasing order.
+Example:
+  Input: [-4, -1, 0, 3, 10]
+  Output: [0, 1, 9, 16, 100]
+  Explanation:
+  -> Squaring elements: [16, 1, 0, 9, 100]
+  -> Sorting in non-decreasing order gives [0, 1, 9, 16, 100].
+#CODE:
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = nums[i] * nums[i];
+        }
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 1; j < nums.length - i; j++) {
+                if (nums[j] < nums[j - 1]) {
+                    int temp = nums[j];
+                    nums[j] = nums[j - 1];
+                    nums[j - 1] = temp;
+                }
+            }
+        }
+        return nums;
+    }
+}
+EXPLANATION:
+Initialization:
+  -> The input array nums contains integers in non-decreasing order.
+  -> We iterate through nums, squaring each element in place.
+Square the Elements:
+  -> Traverse the array once (for loop) and square each element.
+Sort the Squared Values:
+  -> Use a nested loop to implement Bubble Sort:
+     - Iterate through the array, comparing adjacent elements.
+     - If an element is greater than the next one, swap them.
+  -> Continue swapping until the entire array is sorted.
+Return the Result:
+  -> Return the sorted squared array.
+TIME COMPLEXITY:
+-> Squaring each element takes O(N).
+-> Bubble sort runs in O(N^2) in the worst case.
+   Time Complexity: O(N^2), where N is the size of the array.
+SPACE COMPLEXITY:
+-> The algorithm modifies the input array in place, using only a temporary variable for swapping.
+   Space Complexity: O(1).
