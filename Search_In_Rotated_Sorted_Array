@@ -1,0 +1,85 @@
+Problem Link: https://leetcode.com/problems/binary-search/
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Binary Search Method: Use a divide-and-conquer strategy to efficiently search for a target in a rotated sorted array.
+-> Initialize Pointers:
+-> Start with two pointers, low pointing to the beginning of the array and high pointing to the last element.
+-> Calculate Middle Index:
+-> Use the formula mid = low + (high - low) / 2 to determine the middle index of the current search range.
+-> Check Target Condition:
+-> If nums[mid] == target, return mid as the index where the target is found.
+-> Determine Sorted Half:
+-> If the left half is sorted (nums[low] <= nums[mid]), check if the target lies within it:
+    -> If nums[low] <= target <= nums[mid], update high = mid - 1.
+    -> Else, shift low to the right by setting low = mid + 1.
+-> If the right half is sorted (nums[mid] <= nums[high]), check if the target lies within it:
+    -> If nums[mid] <= target <= nums[high], update low = mid + 1.
+    -> Else, shift high to the left by setting high = mid - 1.
+-> Repeat Process:
+-> Continue recalculating mid and adjusting the search range until low > high, meaning the target is not found.
+-> Return Result:
+-> If the target is found, return its index; otherwise, return -1.
+EXAMPLE:
+Input:
+-> nums = [4,5,6,7,0,1,2], target = 0
+Process:
+-> Initialize pointers: low = 0, high = 6.
+-> Calculate mid: mid = 0 + (6 - 0) / 2 = 3.
+-> Compare: nums[3] = 7, not equal to target.
+-> Left half is sorted (nums[0] = 4 <= nums[3] = 7).
+-> Target 0 is not in the left half, move low = mid + 1 = 4.
+-> Recalculate mid: mid = 4 + (6 - 4) / 2 = 5.
+-> Compare: nums[5] = 1, not equal to target.
+-> Left half is sorted (nums[4] = 0 <= nums[5] = 1).
+-> Target 0 is in the left half, move high = mid - 1 = 4.
+-> Recalculate mid: mid = 4 + (4 - 4) / 2 = 4.
+-> Compare: nums[4] = 0, found target at index 4.
+Output:
+-> Index: 4 (nums[4] = 0 is the target).
+CODE:
+class Solution {  
+    public int search(int[] nums, int target) {  
+        int low=0,high=nums.length-1;  
+        while(low<=high){  
+            int mid=low+(high-low)/2;  
+            if(nums[mid]==target){  
+                return mid;  
+            }  
+            if(nums[low]<=nums[mid]){  
+                if(nums[low]<=target && target<=nums[mid]){  
+                    high=mid-1;  
+                }else{  
+                    low=mid+1;  
+                }  
+            }else{  
+                if(nums[mid]<=target && target<=nums[high]){  
+                    low=mid+1;  
+                }else{  
+                    high=mid-1;  
+                }  
+            }  
+        }  
+        return -1;  
+    }  
+}  
+EXPLANATION:
+-> Initialize Pointers:
+-> low and high define the search range, initially covering the entire array.
+-> Calculate Midpoint:
+-> The midpoint index divides the current range into two halves.
+-> Target Check:
+-> If nums[mid] == target, return mid as the index.
+-> Determine Sorted Half:
+-> Identify whether the left or right half is sorted and adjust pointers accordingly.
+-> Loop Termination:
+-> The loop continues until low > high, meaning the target is not present.
+-> Return Result:
+-> If found, return the index; otherwise, return -1.
+TIME COMPLEXITY:
+-> Halving Search Range:
+-> The search range is halved at each step, resulting in logarithmic complexity.
+-> Time Complexity: O(log N).
+SPACE COMPLEXITY:
+-> Iterative Approach:
+-> No additional data structures are used, resulting in constant space usage.
+-> Space Complexity: O(1).
