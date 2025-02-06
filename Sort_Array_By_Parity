@@ -1,0 +1,40 @@
+Problem Link: https://leetcode.com/problems/sort-array-by-parity/  
+APPROACH:  
+-> The goal is to rearrange the given array so that all even numbers appear before odd numbers while maintaining relative order.  
+-> We use an auxiliary array to store the elements in the required order.  
+-> We maintain two pointers:  
+   -> j starts from the beginning and is used to place even numbers.  
+   -> n-1 starts from the end and is used to place odd numbers.  
+-> Example:  
+   -> Input: [3, 1, 2, 4]  
+   -> After processing: [2, 4, _, _] (Even numbers placed first)  
+   -> After processing: [2, 4, 1, 3] (Odd numbers placed at the end)  
+#CODE:  
+class Solution {  
+    public int[] sortArrayByParity(int[] nums) {  
+        int[] arr= new int[nums.length];  
+        int n=arr.length;  
+        int j=0;  
+        for(int i=0;i<nums.length;i++){  
+            if(nums[i]%2==0){  
+               arr[j]=nums[i];  
+               j++;  
+            }else{  
+               arr[n-1]=nums[i];  
+               n--;  
+            }  
+        }  
+        return arr;  
+    }  
+}  
+EXPLANATION:  
+-> We initialize an auxiliary array arr of the same size as nums.  
+-> The variable j is used to insert even numbers from the start of arr, and n-1 is used to insert odd numbers from the end.  
+-> We iterate through nums and check whether the element is even or odd.  
+-> If it's even, we place it at index j and increment j.  
+-> If it's odd, we place it at index n-1 and decrement n.  
+-> Finally, we return the modified arr.  
+TIME COMPLEXITY:  
+-> O(N), where N is the size of the array. We iterate through the array once.  
+SPACE COMPLEXITY:  
+-> O(N), as we use an extra array of size N.  
