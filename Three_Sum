@@ -1,0 +1,108 @@
+PROBLEM LINK: https://leetcode.com/problems/3sum/
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Sorting & Two-Pointer Technique:
+   -> Sort the input array to simplify handling duplicates and use the two-pointer approach.
+-> Iterate Through the Array:
+   -> Use a loop to traverse the array, treating each element nums[i] as a potential first element of a triplet.
+-> Avoid Duplicates:
+   -> Skip duplicate values for nums[i] to prevent duplicate triplets.
+-> Two-Pointer Approach:
+   -> Use two pointers, j (left) and k (right), to find pairs that sum up to the negative of nums[i].
+   -> If nums[i] + nums[j] + nums[k] == 0, a triplet is found.
+   -> If the sum is less than 0, move j forward to increase the sum.
+   -> If the sum is greater than 0, move k backward to decrease the sum.
+-> Store Unique Triplets:
+   -> If a triplet is found, add it to the result list.
+   -> Skip duplicate values for nums[j] and nums[k] to avoid duplicate triplets.
+-> Continue Until j < k:
+   -> Adjust pointers accordingly and continue the search.
+EXAMPLE:
+Input:
+-> nums = [-1, 0, 1, 2, -1, -4]
+Process:
+-> Step 1: Sort nums → [-4, -1, -1, 0, 1, 2]
+-> Step 2: Iterate through nums[]
+-> i = 0, nums[0] = -4:
+   -> j = 1, k = 5
+   -> Sum = -4 + (-1) + 2 = -3 (increase sum by moving j forward)
+   -> Sum = -4 + 0 + 2 = -2 (increase sum)
+   -> Sum = -4 + 1 + 2 = -1 (increase sum)
+   -> No triplet found.
+-> i = 1, nums[1] = -1:
+   -> j = 2, k = 5
+   -> Sum = -1 + (-1) + 2 = 0 → Match found, store [-1, -1, 2]
+   -> Skip duplicates, move j and k.
+   -> Sum = -1 + 0 + 1 = 0 → Match found, store [-1, 0, 1]
+   -> No more valid pairs.
+-> i = 2, nums[2] = -1 (skip duplicate)
+-> i = 3, nums[3] = 0:
+   -> j = 4, k = 5
+   -> Sum = 0 + 1 + 2 = 3 (decrease sum)
+   -> No triplet found.
+-> End of loop.
+Output:
+-> Unique triplets: [[-1, -1, 2], [-1, 0, 1]]
+#CODE:
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            int j = i + 1;
+            int k = nums.length - 1;
+            while (j < k) {
+                int sum = nums[i] + nums[j] + nums[k];
+                if (sum == 0) {
+                    ans.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                    while (j < k && nums[j] == nums[j + 1]) {
+                        j++;
+                    }
+                    while (j < k && nums[k] == nums[k - 1]) {
+                        k--;
+                    }
+                    j++;
+                    k--;
+                } else if (sum < 0) {
+                    j++;
+                } else {
+                    k--;
+                }
+            }
+        }
+        return ans;
+    }
+}
+EXPLANATION:
+-> Sorting:
+   -> The array is sorted to simplify finding triplets and handling duplicates.
+-> Iteration:
+   -> Loop through the array and treat nums[i] as a fixed number.
+-> Two-Pointer Technique:
+   -> Use two pointers (j and k) to find a pair that sums to -nums[i].
+   -> If sum == 0, store the triplet.
+   -> If sum < 0, move j forward to increase the sum.
+   -> If sum > 0, move k backward to decrease the sum.
+-> Avoid Duplicates:
+   -> Skip duplicate values for nums[i], nums[j], and nums[k] to prevent duplicate triplets.
+-> Return Unique Triplets:
+   -> The result list contains unique triplets that sum to zero.
+TIME COMPLEXITY:
+-> Sorting:
+   -> Sorting the array takes O(N log N).
+-> Outer Loop:
+   -> Runs for N iterations.
+-> Inner Two-Pointer Loop:
+   -> Each pair search takes O(N) in worst case.
+-> Overall Complexity:
+   -> O(N^2) (Quadratic complexity due to the two-pointer approach).
+SPACE COMPLEXITY:
+-> Result List:
+   -> Stores triplets dynamically based on input.
+-> Sorting Overhead:
+   -> Sorting takes O(1) extra space.
+-> Effective Space Complexity:
+   -> O(N) (Considering result storage).
