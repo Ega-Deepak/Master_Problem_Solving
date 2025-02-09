@@ -1,0 +1,94 @@
+Problem Link: https://leetcode.com/problems/4sum/
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Sorting & Two-Pointer Method: First, sort the array to enable efficient traversal with two pointers.
+-> Identify the Quadruplets:
+-> Use two nested loops to fix the first two numbers (nums[i] and nums[j]).
+-> For the remaining numbers, apply the two-pointer technique using indices k and l.
+-> Two-Pointer Search:
+-> Initialize k = j + 1 (next element) and l = n - 1 (last element).
+-> Calculate the sum of the four elements: nums[i] + nums[j] + nums[k] + nums[l].
+-> If the sum matches the target, store the quadruplet in the result list and move pointers to avoid duplicates.
+-> If the sum is less than the target, increment k to increase the sum.
+-> If the sum is greater than the target, decrement l to decrease the sum.
+-> Handle Duplicates:
+-> Skip duplicate elements to ensure unique quadruplets are stored.
+-> Continue iterating while maintaining uniqueness.
+EXAMPLE:
+Input:
+-> nums = [1, 0, -1, 0, -2, 2]
+-> target = 0
+Process:
+-> Sort the array: [-2, -1, 0, 0, 1, 2].
+-> Outer loop (i = 0): Fix nums[0] = -2.
+-> Inner loop (j = 1): Fix nums[1] = -1.
+-> Two-pointer search: k = 2, l = 5.
+   -> Sum = -2 + (-1) + 0 + 2 = -1 (less than target). Move k → 3.
+   -> Sum = -2 + (-1) + 0 + 1 = 0 (match found). Store quadruplet [-2, -1, 0, 1].
+   -> Move k and l while avoiding duplicates.
+-> Continue iterating and storing unique quadruplets.
+Output:
+-> Unique quadruplets that sum to target: [[-2, -1, 0, 1], [-2, 0, 0, 2], [-1, 0, 0, 1]].
+#CODE:
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        int n = nums.length;
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(nums);
+        for (int i = 0; i < n; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            for (int j = i + 1; j < n; j++) {
+                if (j > i + 1 && nums[j] == nums[j - 1]) continue;
+                int k = j + 1;
+                int l = n - 1;
+                while (k < l) {
+                    long sum = nums[i];
+                    sum += nums[j];
+                    sum += nums[k];
+                    sum += nums[l];
+                    if (sum == target) {
+                        List<Integer> temp = new ArrayList<>();
+                        temp.add(nums[i]);
+                        temp.add(nums[j]);
+                        temp.add(nums[k]);
+                        temp.add(nums[l]);
+                        ans.add(temp);
+                        k++;
+                        l--;
+                        while (k < l && nums[k] == nums[k - 1]) k++;
+                        while (k < l && nums[l] == nums[l + 1]) l--;
+                    } else if (sum < target) k++;
+                    else l--;
+                }
+            }
+        }
+        return ans;
+    }
+}
+EXPLANATION:
+-> Sorting:
+-> The input array is sorted to facilitate efficient two-pointer traversal.
+-> Nested Loops:
+-> The outer loop fixes nums[i], and the inner loop fixes nums[j].
+-> Two-Pointer Technique:
+-> The two pointers (k and l) explore valid pairs that sum to the target.
+-> Condition Check:
+-> If the sum equals the target, the quadruplet is stored.
+-> If the sum is less, increment k; if greater, decrement l.
+-> Handling Duplicates:
+-> Avoid duplicate quadruplets by skipping repeated elements.
+-> Return Result:
+-> The list ans contains all unique quadruplets that sum to the target.
+TIME COMPLEXITY:
+-> Sorting:
+-> O(N log N) for sorting the array.
+-> Nested Loops:
+-> The first two loops iterate over N elements → O(N^2).
+-> Two-pointer search runs in O(N) inside the nested loops.
+-> Overall:
+-> O(N^3) (Cubic complexity).
+SPACE COMPLEXITY:
+-> Result List:
+-> Stores valid quadruplets dynamically.
+-> Effective Space Complexity:
+-> O(1) (ignoring output storage) or O(K) (where K is the number of quadruplets).
