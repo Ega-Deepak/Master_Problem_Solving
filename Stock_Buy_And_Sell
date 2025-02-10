@@ -1,0 +1,49 @@
+Problem Link: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+APPROACH:
+-> Find the maximum profit that can be obtained from buying and selling stocks at most once.
+-> Maintain a variable min to track the minimum price encountered so far.
+-> Iterate through the prices array, updating `min` and calculating the potential profit at each step.
+-> If the profit at any step is greater than the previously stored maximum profit, update the profit value.
+-> Example:
+For prices = [7, 1, 5, 3, 6, 4]:
+  -> Initialize min = Integer.MAX_VALUE, profit = 0
+  -> Traverse the array:
+      -> prices[0] = 7 → min = 7 → profit remains 0
+      -> prices[1] = 1 → min = 1 → profit remains 0
+      -> prices[2] = 5 → min = 1 → profit = 5 - 1 = 4
+      -> prices[3] = 3 → min = 1 → profit remains 4
+      -> prices[4] = 6 → min = 1 → profit = 6 - 1 = 5
+      -> prices[5] = 4 → min = 1 → profit remains 5
+  -> Maximum profit obtained is 5.
+#CODE:
+class Solution {
+    public int maxProfit(int[] prices) {
+        int min=Integer.MAX_VALUE;
+        int profit=0;
+        for(int i=0;i<prices.length;i++){
+            min=Math.min(min,prices[i]);
+            int diff=prices[i]-min;
+            if(diff>profit){
+                profit=diff;
+            }
+        }
+        return profit;
+    }
+}
+EXPLANATION:
+Initialize Variables:
+-> Set min = Integer.MAX_VALUE to track the minimum price encountered.
+-> Set profit = 0 to store the maximum profit found.
+Traverse Array:
+-> Iterate through prices array using a loop.
+-> At each index:
+    -> Update min to store the minimum stock price so far.
+    -> Calculate potential profit as prices[i] - min.
+    -> If the calculated profit is greater than profit, update profit.
+Return Result:
+-> After iterating through the array, return the maximum profit obtained.
+TIME COMPLEXITY:
+-> The loop runs through the array once, making the time complexity O(N).
+SPACE COMPLEXITY:
+-> No additional space is used apart from a few integer variables, so the space complexity is O(1).
