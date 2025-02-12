@@ -1,0 +1,55 @@
+Problem Link: https://leetcode.com/problems/median-of-two-sorted-arrays/
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+APPROACH:  
+  -> The task is to find the median of two sorted arrays.  
+  -> Merge both arrays into a single sorted array and compute the median.  
+EXAMPLE:  
+   Input: nums1 = [1, 3], nums2 = [2]  
+   Output: 2.0  
+   Explanation:  
+      -> Merging nums1 and nums2 results in [1, 2, 3].  
+      -> The median is 2.0 (middle element of odd-length array).  
+   Input: nums1 = [1, 2], nums2 = [3, 4]  
+   Output: 2.5  
+   Explanation:  
+      -> Merging nums1 and nums2 results in [1, 2, 3, 4].  
+      -> The median is (2+3)/2 = 2.5 (average of middle two elements).   
+class Solution {  
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {  
+        int i=0, j=0, k=0;  
+        int[] arr=new int[nums1.length + nums2.length];  
+        while(i < nums1.length && j < nums2.length){  
+           if(nums1[i] < nums2[j]){  
+               arr[k++] = nums1[i++];  
+           } else {  
+               arr[k++] = nums2[j++];  
+           }  
+        }  
+        while(i < nums1.length){  
+            arr[k++] = nums1[i++];  
+        }  
+        while(j < nums2.length){  
+            arr[k++] = nums2[j++];  
+        }  
+        int start = 0, end = arr.length - 1;  
+        while(start < end){  
+            start++;  
+            end--;  
+        }  
+        return (double)(arr[start] + arr[end]) / 2;  
+    }  
+}  
+EXPLANATION:
+-> Initialize pointers for both arrays and a new merged array.
+-> Merge both arrays in sorted order using two pointers.
+-> Use a second loop to add remaining elements from either array.
+-> Compute the median:
+- If the length is odd, return the middle element.
+- If the length is even, return the average of the two middle elements.
+TIME COMPLEXITY:
+-> Merging two sorted arrays takes O(N + M), where N and M are sizes of nums1 and nums2.
+-> Finding the median is O(1).
+Total Time Complexity: O(N + M).
+SPACE COMPLEXITY:
+-> The algorithm uses an extra array of size O(N + M).
+Space Complexity: O(N + M).
