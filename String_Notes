@@ -1,0 +1,62 @@
+1. What is a String?
+-> A String in Java is a sequence of characters.
+-> It is immutable, meaning once created, it cannot be changed.
+-> Strings are represented by the String class in java.lang package.
+2. Creating Strings
+-> Using String literal (stored in String Pool)
+String s1 = "Hello";
+-> Using new keyword (stored in Heap memory)
+String s2 = new String("Hello");
+-> Strings created using literals are stored in the String Pool for memory efficiency.
+-> Strings created using new are stored in the Heap.
+3. String Methods
+-> length(): Returns the length of the string
+-> charAt(index): Returns the character at the given index
+-> substring(start, end):	Extracts part of the string
+-> toLowerCase():	Converts to lowercase
+-> toUpperCase():	Converts to uppercase
+-> contains("str"):	Checks if the string contains the specified sequence.
+-> equals("str"):	Compares two strings for content equality.
+-> equalsIgnoreCase("str"):	Compares strings ignoring case.
+-> replace("old", "new"):	Replaces occurrences of a substring.
+-> concat(str):	Concatenates two strings
+-> indexOf(ch):	Returns the index of the first occurrence of a character
+-> lastIndexOf(ch):	Returns the last occurrence of a character
+-> split("regex"):	Splits the string based on a regex.
+-> compareTo("str"):	Compares lexicographically (returns 0 if equal).
+
+String s = " Java Programming ";
+System.out.println(s.length());        // 18
+System.out.println(s.trim());          // "Java Programming"
+System.out.println(s.toUpperCase());   // " JAVA PROGRAMMING "
+System.out.println(s.replace("Java", "Python")); // " Python Programming "
+
+4. String Comparison
+(i) Using ==
+-> Compares memory locations (references), not content.
+String s1 = "Hello";
+String s2 = "Hello";
+String s3 = new String("Hello");
+System.out.println(s1 == s2); // true (same reference in String Pool)
+System.out.println(s1 == s3); // false (different memory locations)
+(ii) Using equals()
+-> Compares the content of strings.
+System.out.println(s1.equals(s3)); // true (same content)
+(iii) Using compareTo()
+-> Compares two strings lexicographically.
+System.out.println("apple".compareTo("banana")); // Negative (-1)
+System.out.println("hello".compareTo("hello")); // Zero (0)
+System.out.println("zebra".compareTo("apple")); // Positive (1)
+5. StringBuffer and StringBuilder (Mutable Strings)
+-> StringBuffer and StringBuilder are used when we need modifiable (mutable) strings.
+-> StringBuffer → Thread-safe (synchronized).
+-> StringBuilder → Faster, but not thread-safe.
+StringBuffer sb = new StringBuffer("Hello");
+sb.append(" World");
+System.out.println(sb);  // "Hello World"
+StringBuilder sb2 = new StringBuilder("Java");
+sb2.reverse();
+System.out.println(sb2); // "avaJ"
+
+
+
